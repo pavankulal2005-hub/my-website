@@ -1,0 +1,511 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  line-height: 1.6;
+}
+
+/* Navbar */
+
+.header {
+  position: sticky;
+  top: 0;
+  background: #111;
+  z-index: 1000;
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: #00ffcc;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  position: relative;
+}
+
+/* underline hover animation */
+.nav-links a::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background: #00ffcc;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    width: 50px;
+    height: 50px;
+    background: #1e293b;
+    color: #fff;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px) scale(1.1);
+}
+
+/* Brand Colors */
+.instagram:hover { background: #e1306c; }
+.whatsapp:hover  { background: #25d366; }
+.github:hover    { background: #333; }
+.linkedin:hover  { background: #0a66c2; }
+.youtube:hover   { background: #ff0000; }
+
+
+.menu-icon {
+  display: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+}
+
+/* make menu-icon a tappable button */
+.menu-icon {
+  background: transparent;
+  border: none;
+  padding: 10px 12px;
+  line-height: 1;
+  display: none;
+}
+.menu-icon:focus { outline: 2px solid #00ffcc; outline-offset: 2px; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #111;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    padding: 20px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+}
+
+
+/* Hero */
+.hero {
+  min-height: 72vh;
+  background: linear-gradient(to right, #00ffcc, #0066ff);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.hero span { color: #111; }
+
+.hero-inner {
+  width: 60%;
+  max-width: 1200px;
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+
+.hero-left { flex: 0 0 260px; display:flex; justify-content:center; }
+.hero-right { flex: 1 1 auto; text-align: left; }
+
+.hero h1 { font-size: 42px; margin: 0 0 10px 0; }
+.hero-sub { margin: 0 0 18px 0; font-size: 18px; color: rgba(255,255,255,0.95); }
+
+.btn-primary {
+  background: #0b1113;
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
+.btn-download { background: #00ffcc; color: #0b1113; }
+.btn-download:hover { opacity: 0.95; }
+
+/* Contact CV link */
+.contact-cv {
+  display: inline-block;
+  margin-top: 8px;
+  color: #0b1113;
+  background: #00ffcc;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.contact-cv:hover { opacity: 0.95; transform: translateY(-2px); }
+
+/* Social icons in hero */
+.socials { display:flex; gap:14px; margin-top:16px; }
+.social-link {
+  width:56px;
+  height:56px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background: transparent; /* full-color SVGs include their own backgrounds */
+  position: relative;
+  transition:transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .22s ease, opacity .12s ease;
+  text-decoration:none;
+  /* subtle neutral shadow + faint colored halo (uses --glow) */
+  box-shadow: 0 6px 14px rgba(2,12,20,0.06), 0 0 12px 2px rgba(0,0,0,0.00);
+}
+.social-link svg { display:block; width:28px; height:28px; }
+social-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  filter: blur(14px);
+  opacity: 0.0;
+  transition: opacity .18s ease, transform .18s ease;
+  pointer-events: none;
+}
+.social-link:hover, .social-link:focus-visible {
+  transform: translateY(-6px) scale(1.06);
+}
+.social-link:hover::before, .social-link:focus-visible::before {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* per-platform glow color variable (used by halo) */
+.social-link.instagram { --glow: 214,41,118; }
+.social-link.whatsapp { --glow: 37,211,102; }
+.social-link.youtube { --glow: 255,0,0; }
+.social-link.github { --glow: 20,20,20; }
+.social-link.linkedin { --glow: 10,102,194; }
+
+/* apply halo color using the variable */
+.social-link.instagram::before { background: radial-gradient(circle at 50% 40%, rgba(var(--glow),0.20), rgba(var(--glow),0.08) 30%, rgba(0,0,0,0) 60%); }
+.social-link.whatsapp::before { background: radial-gradient(circle at 50% 40%, rgba(var(--glow),0.22), rgba(var(--glow),0.08) 30%, rgba(0,0,0,0) 60%); }
+.social-link.youtube::before { background: radial-gradient(circle at 50% 40%, rgba(var(--glow),0.20), rgba(var(--glow),0.06) 30%, rgba(0,0,0,0) 60%); }
+.social-link.github::before { background: radial-gradient(circle at 50% 40%, rgba(var(--glow),0.12), rgba(var(--glow),0.05) 30%, rgba(0,0,0,0) 60%); }
+.social-link.linkedin::before { background: radial-gradient(circle at 50% 40%, rgba(var(--glow),0.20), rgba(var(--glow),0.06) 30%, rgba(0,0,0,0) 60%); }
+
+/* animated pulsing halo on hover */
+@keyframes socialHaloPulse {
+  0% { transform: scale(0.96); opacity: 0.9; }
+  50% { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(0.96); opacity: 0.9; }
+}
+.social-link:hover::before { animation: socialHaloPulse 1.4s ease-in-out infinite; }
+
+/* Skill icon glow */
+.skill-icon { transition: box-shadow .22s ease, transform .18s ease; }
+.skill-card:hover .skill-icon { transform: translateY(-6px) scale(1.03); box-shadow: 0 14px 40px rgba(0,102,255,0.14), 0 0 40px 10px rgba(0,102,255,0.06); }
+
+@media (max-width: 768px) {
+  .socials { justify-content: center; }
+  .social-link { width:44px; height:44px; }
+}
+
+/* Avatar (profile photo) */
+.avatar {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 12px;
+  display: inline-block;
+  /* subtle base shadow replaced by glow animation */
+  box-shadow: 0 10px 30px rgba(3,20,30,0.18);
+  transition: transform .18s ease;
+  position: relative;
+  will-change: box-shadow, transform;
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.avatar svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* When avatar is an image */
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* pulsing glow for avatar */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 8px 18px rgba(0,255,204,0.12), 0 0 0 0 rgba(0,255,204,0.0);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 20px 46px rgba(0,102,255,0.18), 0 0 40px 8px rgba(0,255,204,0.08);
+    transform: translateY(-4px);
+  }
+  100% {
+    box-shadow: 0 8px 18px rgba(0,255,204,0.12), 0 0 0 0 rgba(0,255,204,0.0);
+    transform: translateY(0);
+  }
+}
+
+/* adjust hero left size to fit bigger avatar */
+.hero-left { flex: 0 0 280px; display:flex; justify-content:center; }
+
+@media (max-width: 768px) {
+  .avatar { width: 160px; height: 160px; animation-duration: 2.6s; }
+  .hero-left { flex: 0 0 auto; }
+}
+
+/* touch-friendly improvements */
+button, .proj-link, .cert-link, .hero button {
+  touch-action: manipulation;
+}
+
+/* small screens adjustments */
+@media (max-width: 480px) {
+  .avatar { width: 110px; height: 110px; }
+  .hero { padding: 24px 12px; }
+  .nav-links a { padding: 14px 8px; font-size: 18px; }
+  .menu-icon { padding: 12px; font-size: 26px; }
+}
+
+@media (max-width: 768px) {
+  .hero-inner { flex-direction: column; gap: 18px; }
+  .hero-left { flex: 0 0 auto; }
+  .hero-right { text-align: center; }
+  .hero h1 { font-size: 30px; }
+}
+
+/* Sections */
+.section {
+  padding: 60px 10%;
+  text-align: center;
+}
+
+.skills .skill-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* Attractive skill cards */
+.skill-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+  margin-top: 30px;
+  align-items: stretch;
+}
+
+.skill-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f7fcff 100%);
+  border: 1px solid rgba(0,0,0,0.04);
+  padding: 14px 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  box-shadow: 0 6px 14px rgba(11,22,30,0.04);
+}
+
+.skill-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 14px 30px rgba(11,22,30,0.12);
+}
+
+.skill-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #00ffcc, #0066ff);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  flex: 0 0 56px;
+  box-shadow: 0 8px 20px rgba(0,102,255,0.12), inset 0 -6px 12px rgba(0,0,0,0.06);
+  border: 2px solid rgba(255,255,255,0.04);
+}
+
+.skill-name {
+  font-weight: 600;
+  color: #0b1520;
+  font-size: 15px;
+}
+
+/* Add subtle divider for larger screens */
+@media (min-width: 900px) {
+  .skill-card { padding: 18px 16px; }
+}
+
+/* Certificates */
+.certificates p {
+  margin-top: 8px;
+  color: #444;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+  align-items: start;
+}
+
+.certificate-card {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+}
+
+.certificate-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 255, 204, 0.15);
+  background-color: #f9f9f9;
+  border-color: #00ffcc;
+}
+
+.certificate-card .thumb {
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.certificate-card .thumb svg { width: 72px; height: 72px; display: block; }
+
+.cert-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cert-body h3 { margin: 0 0 6px 0; font-size: 16px; }
+.cert-body .issuer { margin: 0 0 8px 0; color: #666; font-size: 13px; }
+.cert-link { color: #0066ff; text-decoration: none; font-weight: 600; }
+.cert-link:hover { text-decoration: underline; }
+
+/* Projects */
+.projects p { margin-top: 8px; color: #444; }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.project-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: white;
+  padding: 14px;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+
+.proj-thumb { width: 110px; height: 70px; flex: 0 0 110px; border-radius: 6px; overflow: hidden; }
+.proj-thumb svg { width: 110px; height: 70px; display: block; }
+
+.proj-body h3 { margin: 0 0 6px 0; font-size: 16px; }
+.proj-body p { margin: 0 0 8px 0; color: #555; }
+.proj-body .tech { font-size: 13px; color: #777; margin-bottom: 8px; }
+.proj-link { color: #00a3ff; text-decoration: none; font-weight: 600; }
+.proj-link:hover { text-decoration: underline; }
+
+/* Contact */
+.contact p {
+  margin: 10px 0;
+}
+
+/* Footer */
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+}
